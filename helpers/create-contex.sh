@@ -9,3 +9,5 @@ kubectl config set-context ${NAMESPACE} \
         --namespace=${NAMESPACE}
 
 kubectl config use-context ${NAMESPACE}
+
+kubectl config get-contexts 
