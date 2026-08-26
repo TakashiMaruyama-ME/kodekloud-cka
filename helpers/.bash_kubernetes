@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#environment variables for kubectl
+export KUBECONFIG=${KUBECONFIG:-${HOME}/.kube/config}
+
+#aliases for kubectl
+alias ll='ls -lrat'
+
+#function to create a new context for the given namespace and set it as the current context
+kctx() {
+  NAMESPACE=$1
+  kubectl config set-context ${NAMESPACE} \
+    --cluster=default \
+    --user=default \
+    --namespace=${NAMESPACE}
+
+  kubectl config use-context ${NAMESPACE}
+  kubectl config get-contexts
+}
+
+kns() {
+  NAMESPACE=$1
+  kubectl config use-context ${NAMESPACE}
+  kubectl config get-contexts
+}
