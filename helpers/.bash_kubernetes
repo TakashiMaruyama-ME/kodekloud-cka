@@ -4,6 +4,7 @@ export KUBECONFIG=${KUBECONFIG:-${HOME}/.kube/config}
 
 #aliases for kubectl
 alias ll='ls -lrat'
+alias kga='kubectl get all -o wide'
 
 #function to create a new context for the given namespace and set it as the current context
 kctx() {
