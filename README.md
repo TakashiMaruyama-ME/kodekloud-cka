@@ -3,10 +3,11 @@ Scripts created for solution to https://learn.kodekloud.com/user/courses/cka-cer
 Question 1:
 1. Apply the necessary sysctl parameters for networking.
   * 1-sysctl.sh
-2. Install kubeadm, kubelet 1.35.0-1.1 on both nodes
-  * 2-install-node.sh
-3. Install kubectl 1.35.0-1.1 on controlplane
-  * 3-install-controlplane.sh
+2. Install kubectl 1.35.0-1.1 on controlplane
+  * 2-install-controlplane.sh
+3. Install kubeadm, kubelet 1.35.0-1.1 on both nodes
+  * 3-install-node.sh
+
 
 Question 5:
 1. Initialize Control Plane Node (Master Node)
