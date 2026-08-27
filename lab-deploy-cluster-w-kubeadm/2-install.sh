@@ -1,15 +1,5 @@
 #!/usr/bin/env bash
 
-# sysctl params required by setup, params persist across reboots
-cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
-net.ipv4.ip_forward = 1
-EOF
-
-# Apply sysctl params without reboot
-sudo sysctl --system
-
-sysctl net.ipv4.ip_forward
-
 sudo apt-get update
 # apt-transport-https may be a dummy package; if so, you can skip that package
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
