@@ -3,13 +3,20 @@ Scripts created for solution to https://learn.kodekloud.com/user/courses/cka-cer
 Question 1:
 1. Apply the necessary sysctl parameters for networking.
   * 1-sysctl.sh
-1. Install kubeadm, kubelet 1.35.0-1.1 on both nodes
-  * 2-install-all.sh
-1. Install kubectl 1.35.0-1.1 on controlplane
+2. Install kubeadm, kubelet 1.35.0-1.1 on both nodes
+  * 2-install-node.sh
+3. Install kubectl 1.35.0-1.1 on controlplane
   * 3-install-controlplane.sh
 
-* kube-init.sh
-* kube-config.sh
-* kube-flannel.yml
-  * replace "Network": "172.17.0.0/16"
-  * add - --iface=eth0
+Question 5:
+1. Initialize Control Plane Node (Master Node)
+  * 4-init-master.sh
+2. set up the default kubeconfig file 
+  * 5-default-kubeconfig.sh
+
+Question 8:
+1. install a network plugin, Flannel
+  * 6-download-flannel-yml.sh
+  * custom-flannel-config.yml
+    * replace "Network": "172.17.0.0/16"
+    * add - --iface=eth0
