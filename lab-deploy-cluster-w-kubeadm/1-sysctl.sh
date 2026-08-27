@@ -8,4 +8,4 @@ EOF
 # Apply sysctl params without reboot
 sudo sysctl --system
 
-sysctl net.ipv4.ip_forward:wq!
+sysctl net.ipv4.ip_forward
