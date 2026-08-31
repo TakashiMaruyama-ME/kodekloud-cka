@@ -8,7 +8,7 @@ To seamlessly transition from Kubernetes v1.34 to v1.35 and gain access to the p
 On the controlplane node:
 Use any text editor you prefer to open the file that defines the Kubernetes apt repository.
 
-`vim /etc/apt/sources.list.d/kubernetes.list`
+```vim /etc/apt/sources.list.d/kubernetes.list```
 
 Update the version in the URL to the next available minor release, i.e v1.35.
 
