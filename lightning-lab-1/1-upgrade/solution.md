@@ -1,13 +1,14 @@
-Solution
+# Solution
+
 Here is the solution for this task. Please note that the output of these commands have not been added here.
 
 To seamlessly transition from Kubernetes v1.34 to v1.35 and gain access to the packages specific to the desired Kubernetes minor version, follow these essential steps during the upgrade process. This ensures that your environment is appropriately configured and aligned with the features and improvements introduced in Kubernetes v1.35.
 
+## Step 1:
 On the controlplane node:
-
 Use any text editor you prefer to open the file that defines the Kubernetes apt repository.
 
-vim /etc/apt/sources.list.d/kubernetes.list
+`vim /etc/apt/sources.list.d/kubernetes.list`
 
 Update the version in the URL to the next available minor release, i.e v1.35.
 
