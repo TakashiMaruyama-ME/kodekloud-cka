@@ -45,51 +45,68 @@ Now, upgrade the version and restart Kubelet. Also, mark the node (in this case,
   kubectl uncordon controlplane
   ```
 
+## Step 4: (if) controlplane gets a taint
 Before draining node01, if the controlplane gets taint during an upgrade, we have to remove it.
 
-# Identify the taint first. 
-kubectl describe node controlplane | grep -i taint
+Identify the taint first. 
+  ```
+  kubectl describe node controlplane | grep -i taint
+  ```
 
-# Remove the taint with help of "kubectl taint" command.
-kubectl taint node controlplane node-role.kubernetes.io/control-plane:NoSchedule-
+Remove the taint with help of "kubectl taint" command.
+  ```
+  kubectl taint node controlplane node-role.kubernetes.io/control-plane:NoSchedule-
+  ```
 
-# Verify it, the taint has been removed successfully.  
-kubectl describe node controlplane | grep -i taint
+Verify it, the taint has been removed successfully.  
+  ```
+  kubectl describe node controlplane | grep -i taint
+  ```
 
+## Step 5: drain node01
 Now, drain the node01 as follows: -
+  ```
+  kubectl drain node01 --ignore-daemonsets
+  ```
 
-kubectl drain node01 --ignore-daemonsets
-
+## Step 6: update node01
 SSH to the node01 and perform the below steps as follows: -
 
 Use any text editor you prefer to open the file that defines the Kubernetes apt repository.
-
-vim /etc/apt/sources.list.d/kubernetes.list
+  ```
+  vim /etc/apt/sources.list.d/kubernetes.list
+  ```
 
 Update the version in the URL to the next available minor release, i.e v1.35.
-
-deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.35/deb/ /
+  ```
+  deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.35/deb/ /
+  ```
 
 After making changes, save the file and exit from your text editor. Proceed with the next instruction.
-
-apt update
-apt-cache madison kubeadm
+  ```
+  apt update
+  apt-cache madison kubeadm
+  ```
 
 Based on the version information displayed by apt-cache madison, it indicates that for Kubernetes version 1.35.0, the available package version is 1.35.0-1.1. Therefore, to install kubeadm for Kubernetes v1.35.0, use the following command:
-
-apt-get install kubeadm=1.35.0-1.1
-# Upgrade the node 
-kubeadm upgrade node
-
+  ```
+  apt-get install kubeadm=1.35.0-1.1
+  # Upgrade the node 
+  kubeadm upgrade node
+  ```
+## Step 7: upgrade node01
 Now, upgrade the version and restart Kubelet.
+  ```
+  apt-get install kubelet=1.35.0-1.1
+  systemctl daemon-reload
+  systemctl restart kubelet
+  ```
 
-apt-get install kubelet=1.35.0-1.1
-systemctl daemon-reload
-systemctl restart kubelet
-
+## Step 8: uncordon node01
 To exit from the specific node, type exit or logout on the terminal.
 
 Back on the controlplane node: -
-
-kubectl uncordon node01
-kubectl get pods -o wide | grep gold # make sure this is scheduled on a node
+  ```
+  kubectl uncordon node01
+  kubectl get pods -o wide | grep gold # make sure this is scheduled on a node
+  ```
