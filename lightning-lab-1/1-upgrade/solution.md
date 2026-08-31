@@ -8,17 +8,21 @@ To seamlessly transition from Kubernetes v1.34 to v1.35 and gain access to the p
 On the controlplane node:
 Use any text editor you prefer to open the file that defines the Kubernetes apt repository.
 
-  ```vim /etc/apt/sources.list.d/kubernetes.list```
+  ```
+  vim /etc/apt/sources.list.d/kubernetes.list
+  ```
 
 Update the version in the URL to the next available minor release, i.e v1.35.
-
-  ```deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.35/deb/ /```
+  ```
+  deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.35/deb/ /
+  ```
 
 After making changes, save the file and exit from your text editor. Proceed with the next instruction.
-
-```  kubectl drain controlplane --ignore-daemonsets
+  ```  
+  kubectl drain controlplane --ignore-daemonsets
   apt update
-  apt-cache madison kubeadm```
+  apt-cache madison kubeadm 
+  ```
 
 Based on the version information displayed by apt-cache madison, it indicates that for Kubernetes version 1.35.0, the available package version is 1.35.0-1.1. Therefore, to install kubeadm for Kubernetes v1.35.0, use the following command:
 
