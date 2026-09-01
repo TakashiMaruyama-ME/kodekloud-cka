@@ -1,8 +1,8 @@
-# Solution
-
-Here is the solution for this task. Please note that the output of these commands have not been added here.
-
-To seamlessly transition from Kubernetes v1.34 to v1.35 and gain access to the packages specific to the desired Kubernetes minor version, follow these essential steps during the upgrade process. This ensures that your environment is appropriately configured and aligned with the features and improvements introduced in Kubernetes v1.35.
+# upgrade controlplane
+Drain
+Update apt
+Upgrade kubeadm
+Uncordon
 
 ## Step 1: drain controlplane
   ```
@@ -20,6 +20,7 @@ Update the version in the URL to the next available minor release, i.e v1.35.
   ```
   deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.35/deb/ /
   ```
+
 After making changes, save the file and exit from your text editor. Proceed with the next instruction.
   ```  
   apt update
@@ -39,10 +40,14 @@ Now, upgrade the version and restart Kubelet. Also, mark the node (in this case,
   apt-get install kubelet=1.35.0-1.1
   systemctl daemon-reload
   systemctl restart kubelet
+  ```
+
+## Step 4: uncordon
+  ```
   kubectl uncordon controlplane
   ```
 
-## Step 4: (if) controlplane gets a taint
+# IF controlplane gets a taint
 Before draining node01, if the controlplane gets taint during an upgrade, we have to remove it.
 
 Identify the taint first. 
@@ -59,14 +64,18 @@ Verify it, the taint has been removed successfully.
   ```
   kubectl describe node controlplane | grep -i taint
   ```
+# Upgrade nodes
+Drain node
+Update apt
+Upgrade kubeadm
 
-## Step 5: drain node01
+## Step 1: drain node01
 Now, drain the node01 as follows: -
   ```
   kubectl drain node01 --ignore-daemonsets
   ```
 
-## Step 6: update node01
+## Step 2: update apt on node01
 SSH to the node01 and perform the below steps as follows: -
 
 Use any text editor you prefer to open the file that defines the Kubernetes apt repository.
@@ -91,7 +100,7 @@ Based on the version information displayed by apt-cache madison, it indicates th
   # Upgrade the node 
   kubeadm upgrade node
   ```
-## Step 7: upgrade node01
+
 Now, upgrade the version and restart Kubelet.
   ```
   apt-get install kubelet=1.35.0-1.1
