@@ -94,6 +94,7 @@ After making changes, save the file and exit from your text editor. Proceed with
   apt-cache madison kubeadm
   ```
 
+## Step 3: upgrade node
 Based on the version information displayed by apt-cache madison, it indicates that for Kubernetes version 1.35.0, the available package version is 1.35.0-1.1. Therefore, to install kubeadm for Kubernetes v1.35.0, use the following command:
   ```
   apt-get install kubeadm=1.35.0-1.1
@@ -108,7 +109,7 @@ Now, upgrade the version and restart Kubelet.
   systemctl restart kubelet
   ```
 
-## Step 8: uncordon node01
+## Step 4: uncordon node01
 To exit from the specific node, type exit or logout on the terminal.
 
 Back on the controlplane node: -
