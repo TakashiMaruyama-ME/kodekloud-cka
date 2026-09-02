@@ -1,8 +1,8 @@
 # Task
 Create a new deployment called nginx-deploy, with image nginx:1.16 and 1 replica. Next, upgrade the deployment to version 1.17 using rolling update and add the annotation message Updated nginx image to 1.17.
 
-  * Image: nginx:1.16
-  * Task: Upgrade the version of the deployment to 1:17
+  - [ ] Image: nginx:1.16
+  - [ ] Task: Upgrade the version of the deployment to 1:17
 
 # Solution
 Deployment Creation and Update with Annotation
