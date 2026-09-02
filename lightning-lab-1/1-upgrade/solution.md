@@ -3,8 +3,8 @@ Upgrade the current version of kubernetes from 1.34.0 to 1.35.0 exactly using th
 
 Upgrade controlplane node first and drain node node01 before upgrading it. Pods for gold-nginx should run on the controlplane node subsequently.
 
-  * Cluster Upgraded?
-  * pods 'gold-nginx' running on controlplane?
+  - [ ] Cluster Upgraded?
+  - [ ] pods 'gold-nginx' running on controlplane?
 
 # Solution
 ## upgrade controlplane
