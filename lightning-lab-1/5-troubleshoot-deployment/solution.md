@@ -3,7 +3,7 @@ A new deployment called alpha-mysql has been deployed in the alpha namespace. Ho
 
 Important: Do not alter the persistent volume.
 
-  * Troubleshoot and fix the issues
+  - [ ] Troubleshoot and fix the issues
 
 # Solution
 Use the command kubectl describe and try to fix the issue.
