@@ -10,7 +10,13 @@ Use the command kubectl run to create a pod definition file. Add secret volume a
 
 Alternatively, run the following command:
 ```
-kubectl run secret-1401 -n admin1401 --image=busybox --dry-run=client -oyaml --command -- sleep 4800 > admin.yaml
+kubectl run secret-1401 \
+ -n admin1401 \
+ --image=busybox \
+ --dry-run=client \
+ -o yaml \
+ --command -- sleep 4800 \
+ > admin.yaml
 ```
 Add the secret volume and mount path to create a pod called secret-1401 in the admin1401 namespace as follows:
 ```
