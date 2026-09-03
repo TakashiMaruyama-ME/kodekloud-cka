@@ -42,3 +42,25 @@ Here’s the YAML for the Pod:
       - name: shared-volume
         emptyDir: {}
 ```
+**Notes:** 
+1. For NODE_NAME, fieldPath: spec.nodeName is the recommended pattern
+```
+- name: NODE_NAME
+  valueFrom:
+    fieldRef:
+      fieldPath: spec.nodeName
+```
+2. For shell commands I prefer this style:
+```
+command: ["sh","-c"]
+args:
+  - | <command>
+```
+vs
+```
+command:
+  - "sh"
+  - "-c"
+  - "<command>"
+```
+3. In order for sidecar container "mc-pod-3" to read the "mc-pod-2" logs they need to share a volume. 
