@@ -1,32 +1,27 @@
-Solution
+# Solution
 In this task, we will use the kubectl and helm commands. Here are the steps: -
-
-
-
+## Step 1:
 use the helm ls command to list all the releases installed using Helm in the Kubernetes cluster.
-
+```
 helm ls -A
 
-
-
+```
 Here -A or --all-namespaces option lists all the releases of all the namespaces.
 
-
-
+## Step 2:
 Identify the namespace where the resources get deployed.
 
-
 Use the helm repo ls command to list the helm repositories.
+```
 helm repo ls 
 
-
-
+```
+# Step 3:
 Now, update the helm repository with the following command: -
-
+```
 helm repo update kk-mock1 -n kk-ns
 
-
-
+```
 The above command updates the local cache of available charts from the configured chart repositories.
 
 
