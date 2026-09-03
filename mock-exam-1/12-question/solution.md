@@ -16,35 +16,31 @@ Use the helm repo ls command to list the helm repositories.
 helm repo ls 
 
 ```
-# Step 3:
+## Step 3:
 Now, update the helm repository with the following command: -
 ```
 helm repo update kk-mock1 -n kk-ns
-
 ```
 The above command updates the local cache of available charts from the configured chart repositories.
 
 
-
+## Step 4:
 The helm search command searches for all the available charts in a specific Helm chart repository. In our case, it's the podinfo helm chart.
+```
 helm search repo kk-mock1/podinfo -n kk-ns -l | head -n30
 
-
-
+```
 The -l or --versions option is used to display information about all available chart versions.
 
-
-
+## Step 5:
 Upgrade the helm chart to 6.11.2: -
-
+```
 helm upgrade kk-mock1 kk-mock1/podinfo -n kk-ns --version=6.11.2
+```
 
-
-
+## Step 6:
 After upgrading the chart version, you can verify it with the following command: -
-
+```
 helm ls -n kk-ns
-
-
-
+```
 Look under the CHART column for the chart version.
