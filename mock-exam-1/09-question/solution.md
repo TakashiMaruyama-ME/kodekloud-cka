@@ -1,6 +1,6 @@
-Solution
+# Solution
 Under /root/ folder you will find a yaml file webapp-hpa.yaml. Update the yaml file as per task given.
-
+```
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -23,7 +23,9 @@ spec:
   behavior:
     scaleDown:
       stabilizationWindowSeconds: 300
+```
 
 Use below command
-
+```
 kubectl create -f webapp-hpa.yaml
+```
