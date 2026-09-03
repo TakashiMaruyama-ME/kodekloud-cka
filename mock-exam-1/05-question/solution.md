@@ -1,2 +1,5 @@
-Solution
-Run the command: kubectl create deployment  hr-web-app --image=kodekloud/webapp-color --replicas=2
+# Solution
+Run the command: 
+```
+kubectl create deployment  hr-web-app --image=kodekloud/webapp-color --replicas=2
+```
