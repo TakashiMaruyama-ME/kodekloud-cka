@@ -22,16 +22,19 @@ Here’s the YAML for the Pod:
         volumeMounts:
           - name: shared-volume
             mountPath: /var/log/shared
-        command:
-          - "sh"
-          - "-c"
-          - "while true; do date >> /var/log/shared/date.log; sleep 1; done"
+        command: ["sh","-c"]
+        args:
+          - |
+            while true
+              do date >> /var/log/shared/date.log
+              sleep 1
+            done
       - name: mc-pod-3
         image: busybox:1
-        command:
-          - "sh"
-          - "-c"
-          - "tail -f /var/log/shared/date.log"
+        command: ["sh","-c"]
+        args:
+          - |
+            tail -f /var/log/shared/date.log
         volumeMounts:
           - name: shared-volume
             mountPath: /var/log/shared
