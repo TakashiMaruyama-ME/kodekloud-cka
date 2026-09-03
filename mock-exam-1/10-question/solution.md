@@ -1,0 +1,17 @@
+Solution
+Use the below YAML file to create the VPA for deployment analytics-deployment
+
+kubectl create -n default -f - <<EOF
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: analytics-vpa
+  namespace: default
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: analytics-deployment
+  updatePolicy:
+    updateMode: "Recreate"
+EOF
