@@ -1,6 +1,6 @@
-Solution
+# Solution
 Solution manifest file to create a persistent volume pv-analytics as follows:
-
+```
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -14,3 +14,4 @@ spec:
     - ReadWriteMany
   hostPath:
       path: /pv/data-analytics
+```
