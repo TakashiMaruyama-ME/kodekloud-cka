@@ -26,3 +26,8 @@ Check that it is enabled to start on boot:
 systemctl is-enabled cri-docker
 ```
 You should see active and enabled as the output for both commands
+
+***Notes:***
+
+1. Tests knowledge of `dpkg` (Debian package manager)
+2. Tests knowledge of `systemctl` commands
