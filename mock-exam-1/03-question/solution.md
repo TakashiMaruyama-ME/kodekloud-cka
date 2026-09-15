@@ -1,3 +1,8 @@
+# Question
+On `controlplane` node, identify all CRDs related to `VerticalPodAutoscaler` and save their names into the file `/root/vpa-crds.txt`.
+
+- [ ] Does the file contain correct CRDs?
+
 # Solution
 Use kubectl get crd to find all CRDs and filter by VerticalPodAutoscaler.
 
