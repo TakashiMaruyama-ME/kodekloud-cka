@@ -9,3 +9,11 @@ kubectl get crd -o custom-columns=NAME:.metadata.name | grep verticalpodautoscal
 ```
 Ensure that the CRD names are correctly saved in the /root/vpa-crds.txt
 The file should contain the CRD names related to VerticalPodAutoscaler.
+
+**Notes:** 
+
+My way:
+```
+kubectl get crd -o wide| grep verticalpod | awk '{print $1}' > /root/vpa-crds.txt
+```
+The Kodekloud answer makes use of custom-columns which is helpful to know how to use.
