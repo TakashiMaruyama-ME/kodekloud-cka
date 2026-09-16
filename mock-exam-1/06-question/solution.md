@@ -1,3 +1,8 @@
+# Question
+A new application `orange` is deployed. There is something wrong with it. Identify and fix the issue.
+
+- [ ] Is the issue fixed?
+
 # Solution
 To know more details of orange pod:
 ```
