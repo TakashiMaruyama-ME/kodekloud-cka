@@ -20,3 +20,24 @@ kubectl expose deployment hr-web-app \
   -o yaml > hr-web-app-service.yaml 
 ```
 Now, in generated service definition file add the nodePort field with the given port number under the ports section and create a service.
+
+Final yaml should look like
+```
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hr-web-app
+  name: hr-web-app-service
+spec:
+  ports:
+  - port: 8080
+    nodePort: 30082
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: hr-web-app
+  type: NodePort
+status:
+  loadBalancer: {}
+```
