@@ -56,6 +56,10 @@ Here’s the YAML for the Pod:
     fieldRef:
       fieldPath: spec.nodeName
 ```
+To validate that this was set correctly
+```
+kubectl exec it pod/mc-pod -c mc-pod-1 -n mc-namespace -- printenv NODE_NAME
+```
 2. For shell commands I prefer this style:
 ```
 command: ["sh","-c"]
