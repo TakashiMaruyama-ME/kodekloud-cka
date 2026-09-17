@@ -1,3 +1,14 @@
+# Question
+Create a Horizontal Pod Autoscaler (HPA) with name `webapp-hpa` for the deployment named `kkapp-deploy` in the **default namespace** with the `webapp-hpa.yaml` file located under the root folder.
+Ensure that the HPA scales the deployment based on **CPU utilization**, maintaining an average CPU usage of **50%** across all pods.
+Configure the HPA to **cautiously scale down** pods by setting a **stabilization window of 300 seconds** to prevent rapid fluctuations in pod count.
+
+Note: The kkapp-deploy deployment is created for backend; you can check in the terminal.
+
+- [ ] Is the HPA webapp-hpa deployed?
+- [ ] Is the deployment configured for metrics CPU Utilization?
+- [ ] Is the stabilization window set to 300 seconds?
+
 # Solution
 Under /root/ folder you will find a yaml file webapp-hpa.yaml. Update the yaml file as per task given.
 ```
