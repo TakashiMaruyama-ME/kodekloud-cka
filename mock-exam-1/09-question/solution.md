@@ -40,3 +40,17 @@ Use below command
 ```
 kubectl create -f webapp-hpa.yaml
 ```
+**Note:**
+There is an imperative command to create the yaml but, `stabilizationWindowSeconds: 300` has to be edited manually.
+```
+kubectl autoscale deploy kkapp-deploy \
+  --namespace=default \
+  --name=webapp-hpa \
+  --min=2 \
+  --max=10 \
+  --cpu=50% \
+  --dry-run=client \
+  -o yaml > hpa.yml
+```
+The ref for `stabilizationWindowSeconds: 300`
+https://kubernetes.io/docs/concepts/workloads/autoscaling/horizontal-pod-autoscale/#stabilization-window
