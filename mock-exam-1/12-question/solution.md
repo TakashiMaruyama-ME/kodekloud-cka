@@ -1,10 +1,17 @@
+# Question
+One co-worker deployed a `podinfo` helm chart `kk-mock1` in the `kk-ns` namespace on the `cluster`. A new update is pushed to the helm chart, and the team wants you to update the helm repository to fetch the new changes.
+
+After updating the helm chart, upgrade the helm chart version to `6.11.2`.
+
+- [ ] Is the deployment running?
+- [ ] Is the chart version upgraded?
+
 # Solution
 In this task, we will use the kubectl and helm commands. Here are the steps: -
 ## Step 1:
 use the helm ls command to list all the releases installed using Helm in the Kubernetes cluster.
 ```
 helm ls -A
-
 ```
 Here -A or --all-namespaces option lists all the releases of all the namespaces.
 
@@ -14,8 +21,8 @@ Identify the namespace where the resources get deployed.
 Use the helm repo ls command to list the helm repositories.
 ```
 helm repo ls 
-
 ```
+
 ## Step 3:
 Now, update the helm repository with the following command: -
 ```
@@ -28,7 +35,6 @@ The above command updates the local cache of available charts from the configure
 The helm search command searches for all the available charts in a specific Helm chart repository. In our case, it's the podinfo helm chart.
 ```
 helm search repo kk-mock1/podinfo -n kk-ns -l | head -n30
-
 ```
 The -l or --versions option is used to display information about all available chart versions.
 
