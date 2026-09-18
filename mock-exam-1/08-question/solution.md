@@ -12,6 +12,7 @@ Host path: `/pv/data-analytics`
 - [ ] Is the hostPath set?
 
 # Solution
+**Example:** https://kubernetes.io/docs/tutorials/configuration/configure-persistent-volume-storage/#create-a-persistentvolume  
 Solution manifest file to create a persistent volume pv-analytics as follows:
 ```
 ---
