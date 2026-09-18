@@ -1,13 +1,13 @@
 # Question
-Create a Kubernetes Gateway resource with the following specifications:
+Create a **Kubernetes Gateway** resource with the following specifications:
 
-Name: web-gateway <br>
-Namespace: nginx-gateway <br>
-Gateway Class Name: nginx <br>
-Listeners: <br>
-  Protocol: HTTP <br>
-  Port: 80 <br>
-  Name: http <br>
+1. Name: `web-gateway` <br>
+2. Namespace: `nginx-gateway` <br>
+3. Gateway Class Name: `nginx` <br>
+4. Listeners: <br>
+    * Protocol: `HTTP` <br>
+    * Port: `80` <br>
+    * Name: `http` <br>
 
 - [ ] Is the web-gateway deployed to listen on port 80?
 
