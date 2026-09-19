@@ -2,7 +2,7 @@
 [01-question/solution.md](01-question/solution.md)
 
 # Question 2
-[02-question/solution.md]()
+[02-question/solution.md](02-question/solution.md)
 
 # Question 3
 On controlplane node, identify all CRDs related to VerticalPodAutoscaler and save their names into the file /root/vpa-crds.txt.
