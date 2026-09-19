@@ -1,95 +1,13 @@
-# Question 1
-[01-question/solution.md](01-question/solution.md)
 
-# Question 2
-[02-question/solution.md](02-question/solution.md)
-
-# Question 3
-On controlplane node, identify all CRDs related to VerticalPodAutoscaler and save their names into the file /root/vpa-crds.txt.
-
-  - [ ] Does the file contain correct CRDs?
-
-# Question 4
-Create a service named messaging-service to expose the messaging pod within the cluster on port 6379. The messaging pod is running in the default namespace.
-
-Use imperative commands.
-
-  - [ ] Service: messaging-service
-  - [ ] Port: 6379
-  - [ ] Type: ClusterIp
-  - [ ] Use the right labels
-
-# Question 5
-Create a deployment named hr-web-app using the image kodekloud/webapp-color with 2 replicas.
-
-  - [ ] Name: hr-web-app
-  - [ ] Image: kodekloud/webapp-color
-  - [ ] Replicas: 2
-
-# Question 6
-A new application orange is deployed. There is something wrong with it. Identify and fix the issue.
-
-  - [ ] Is the issue fixed?
-
-# Question 7
-Expose the hr-web-app created in the previous task as a service named hr-web-app-service, accessible on port 30082 on the nodes of the cluster.
-
-The web application listens on port 8080.
-
-  - [ ] Name: hr-web-app-service
-  - [ ] Type: NodePort
-  - [ ] Endpoints: 2
-  - [ ] Port: 8080
-  - [ ] NodePort: 30082
-
-# Question 8
-Create a Persistent Volume with the given specification: -
-
-Volume name: pv-analytics
-Storage: 100Mi
-Access mode: ReadWriteMany
-Host path: /pv/data-analytics
-
-  - [ ] Is the volume name set?
-  - [ ] Is the storage capacity set?
-  - [ ] Is the accessMode set?
-  - [ ] Is the hostPath set?
-
-# Question 9
-Create a Horizontal Pod Autoscaler (HPA) with name webapp-hpa for the deployment named kkapp-deploy in the default namespace with the webapp-hpa.yaml file located under the root folder.
-Ensure that the HPA scales the deployment based on CPU utilization, maintaining an average CPU usage of 50% across all pods.
-Configure the HPA to cautiously scale down pods by setting a stabilization window of 300 seconds to prevent rapid fluctuations in pod count.
-
-Note: The kkapp-deploy deployment is created for backend; you can check in the terminal.
-
-  - [ ] Is the HPA webapp-hpa deployed?
-  - [ ] Is the deployment configured for metrics CPU Utilization?
-  - [ ] Is the stabilization window set to 300 seconds?
-
-# Question 10
-Deploy a Vertical Pod Autoscaler (VPA) with name analytics-vpa for the deployment named analytics-deployment in the default namespace.
-The VPA should automatically adjust the CPU and memory requests of the pods to optimize resource utilization. Ensure that the VPA operates in Recreate mode, allowing it to evict and recreate pods with updated resource requests as needed.
-
- - [ ] Is the VPA analytics-vpa created for deployment analytics-deployment?
- - [ ] Is the updatePolicy set to Recreate mode for deployment analytics-deployment?
-
-# Question 11
-Create a Kubernetes Gateway resource with the following specifications:
-
-  1. Name: web-gateway
-  2. Namespace: nginx-gateway
-  3. Gateway Class Name: nginx
-  4. Listeners:
-    * Protocol: HTTP
-    * Port: 80
-    * Name: http
-
- - [ ] Is the web-gateway deployed to listen on port 80?
-
- # Question 12
- One co-worker deployed a podinfo helm chart kk-mock1 in the kk-ns namespace on the cluster. A new update is pushed to the helm chart, and the team wants you to update the helm repository to fetch the new changes.
-
-After updating the helm chart, upgrade the helm chart version to 6.11.2.
-
- - [ ] Is the deployment running?
- - [ ] Is the chart version upgraded?
+[01-question/solution.md](01-question/solution.md) <br>
+[02-question/solution.md](02-question/solution.md) <br>
+[03-question/solution.md](03-question/solution.md) <br>
+[04-question/solution.md](04-question/solution.md) <br>
+[05-question/solution.md](05-question/solution.md) <br>
+[06-question/solution.md](06-question/solution.md) <br>
+[07-question/solution.md](07-question/solution.md) <br>
+[08-question/solution.md](08-question/solution.md) <br>
+[09-question/solution.md](09-question/solution.md) <br>
+[10-question/solution.md](10-question/solution.md) <br>
+[11-question/solution.md](11-question/solution.md) <br>
+[12-question/solution.md](12-question/solution.md) <br>
