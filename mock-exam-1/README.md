@@ -1,5 +1,5 @@
 # Question 1
-01-question/solution.md
+[01-question/solution.md](01-question/solution.md)
 
 # Question 2
 This question needs to be solved on node node01. To access the node using SSH, use the credentials below:
