@@ -2,16 +2,7 @@
 [01-question/solution.md](01-question/solution.md)
 
 # Question 2
-This question needs to be solved on node node01. To access the node using SSH, use the credentials below:
-  ```
-  username: bob
-  password: caleston123
-  ```
-As an administrator, you need to prepare node01 to install kubernetes. One of the steps is installing a container runtime. Install the cri-docker_0.3.16.3-0.debian.deb package located in /root and ensure that the cri-docker service is running and enabled to start on boot.
-
-  - [ ] Is the package installed successfully on node01?
-  - [ ] Is the service running?
-  - [ ] Is the service enabled?
+[02-question/solution.md]()
 
 # Question 3
 On controlplane node, identify all CRDs related to VerticalPodAutoscaler and save their names into the file /root/vpa-crds.txt.
