@@ -18,3 +18,39 @@ curl -s http://kodekloud-ingress.app/
 - [ ] Ingress exposed and serving traffic via kodekloud-ingress.app host
 
 # Solution
+Solution
+Make sure the path is set correctly and the pathType is Prefix. Use host-based routing
+
+Checkout the resources in the ingress-ns namespace:
+ssh cluster1-controlplane
+kubectl get deployment webapp-deploy -n ingress-ns
+kubectl get svc webapp-svc -n ingress-ns
+
+Create the Ingress YAML file:
+# webapp-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webapp-ingress
+  namespace: ingress-ns
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: kodekloud-ingress.app
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: webapp-svc
+            port:
+              number: 80
+
+Apply the Ingress resource:
+kubectl apply -f webapp-ingress.yaml
+
+Test access to the app:
+curl http://kodekloud-ingress.app/
