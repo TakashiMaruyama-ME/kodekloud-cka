@@ -8,3 +8,9 @@ Create a new deployment called `nginx-deploy`, with image `nginx:1.16` and `1` r
 - [ ] Version upgraded to 1.17
 
 # Solution
+```
+k create deploy nginx-deploy --imagenginx:1.16 --replicas=2
+```
+```
+k set image deploy nginx-deploy nginx=nginx:1.17
+```
