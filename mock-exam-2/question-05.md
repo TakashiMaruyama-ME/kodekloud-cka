@@ -15,7 +15,7 @@ Please refer to the documentation to see an example. The documentation tab is av
 
 # Solution
 Solution manifest file to create a CSR as follows:
-
+```
 ---
 apiVersion: certificates.k8s.io/v1
 kind: CertificateSigningRequest
@@ -28,15 +28,16 @@ spec:
   - digital signature
   - key encipherment
   - client auth
+```
 
 To approve this certificate, run: kubectl certificate approve john-developer
 
 Next, create a role developer and rolebinding developer-role-binding, run the command:
 
-kubectl create role developer --resource=pods --verb=create,list,get,update,delete --namespace=development
+```kubectl create role developer --resource=pods --verb=create,list,get,update,delete --namespace=development```
 
-kubectl create rolebinding developer-role-binding --role=developer --user=john --namespace=development
+```kubectl create rolebinding developer-role-binding --role=developer --user=john --namespace=development```
 
 To verify the permission from kubectl utility tool:
 
-kubectl auth can-i update pods --as=john --namespace=development
+```kubectl auth can-i update pods --as=john --namespace=development```
