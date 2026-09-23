@@ -27,7 +27,7 @@ kubectl get deployment webapp-deploy -n ingress-ns
 kubectl get svc webapp-svc -n ingress-ns
 
 Create the Ingress YAML file:
-# webapp-ingress.yaml
+```# webapp-ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -48,6 +48,7 @@ spec:
             name: webapp-svc
             port:
               number: 80
+```
 
 Apply the Ingress resource:
 kubectl apply -f webapp-ingress.yaml
@@ -59,4 +60,7 @@ curl http://kodekloud-ingress.app/
 # My solution
 ```
 k create ingress webapp-ingress --rule=kodekloud-ingress.app/*=webapp-svc:80 --class=nginx -n ingress-ns --dry-run=client -o yaml > ingress.yaml
+```
+```
+kubectl apply -f ingress.yaml
 ```
