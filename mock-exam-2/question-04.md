@@ -9,7 +9,7 @@ Create a new deployment called `nginx-deploy`, with image `nginx:1.16` and `1` r
 
 # Solution
 ```
-k create deploy nginx-deploy --imagenginx:1.16 --replicas=2
+k create deploy nginx-deploy --imagenginx:1.16 --replicas=1
 ```
 ```
 k set image deploy nginx-deploy nginx=nginx:1.17
