@@ -54,3 +54,9 @@ kubectl apply -f webapp-ingress.yaml
 
 Test access to the app:
 curl http://kodekloud-ingress.app/
+
+
+# My solution
+```
+k create ingress webapp-ingress --rule=kodekloud-ingress.app/*=webapp-svc:80 --class=nginx -n ingress-ns --dry-run=client -o yaml > ingress.yaml
+```
