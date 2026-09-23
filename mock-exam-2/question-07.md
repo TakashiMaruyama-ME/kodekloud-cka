@@ -1,0 +1,46 @@
+# Question
+From student-node ssh cluster1-controlplane to solve this question.
+
+
+Create a static pod on cluster1-node01 called nginx-critical with the image nginx. Make sure that it is recreated/restarted automatically in case of a failure.
+
+For example, use /etc/kubernetes/manifests as the static Pod path.
+
+# Solution
+To create a static pod called nginx-critical by using below command:
+
+kubectl run nginx-critical --image=nginx --dry-run=client -o yaml > static.yaml
+
+Copy the contents of this file or use scp command to transfer this file from cluster1-controlplane to cluster1-node01 node.
+
+root@cluster1-controlplane:~# scp static.yaml cluster1-node01:/root/
+
+To know the IP Address of the cluster1-node01 node:
+```
+root@cluster1-controlplane:~# kubectl get nodes -o wide
+
+# Perform SSH
+root@cluster1-controlplane:~# ssh cluster1-node01
+OR
+root@cluster1-controlplane:~# ssh <IP of cluster1-node01>
+```
+
+On cluster1-node01 node:
+
+Check if static pod directory is present which is /etc/kubernetes/manifests, if it's not present then create it.
+
+root@cluster1-node01:~# mkdir -p /etc/kubernetes/manifests
+
+Add that complete path to the staticPodPath field in the kubelet config.yaml file.
+
+root@cluster1-node01:~# vi /var/lib/kubelet/config.yaml
+
+now, move/copy the static.yaml to path /etc/kubernetes/manifests/.
+
+root@cluster1-node01:~# cp /root/static.yaml /etc/kubernetes/manifests/
+
+Go back to the cluster1-controlplane node and check the status of static pod:
+
+root@cluster1-node01:~# exit
+logout
+root@cluster1-controlplane:~# kubectl get pods 
