@@ -32,3 +32,66 @@ tail -f /var/log/app/app.log
 
 
 # Solution
+```
+k create deploy logging-deployment -n logging-ns --image=busybox -o yaml > logging.yaml
+```
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: "2026-09-23T19:35:19Z"
+  generation: 1
+  labels:
+    app: logging-deployment
+  name: logging-deployment
+  namespace: logging-ns
+  resourceVersion: "6684"
+  uid: 3faea220-f188-442d-9f03-4243b4ac03b4
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: logging-deployment
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: logging-deployment
+    spec:
+      containers:
+      - name: app-container
+        image: busybox
+        command: ["sh","-c"]
+        args: 
+          - |
+            while true; do
+              echo "Log entry" >> /var/log/app/app.log
+              sleep 5
+            done
+        volumeMounts:
+          - name: shared-volume
+            mountPath: /var/log/app
+      - name: log-agent
+        image: busybox
+        command: ["sh","-c"]
+        args: 
+          - |
+            touch /var/log/app/app.log
+            tail -f /var/log/app/app.log
+        volumeMounts:
+          - name: shared-volume
+            mountPath: /var/log/app
+      volumes:
+        - name: shared-volume
+          emptyDir: {}
+
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+```
