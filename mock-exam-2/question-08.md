@@ -1,14 +1,14 @@
 # Question
-From student-node ssh cluster1-controlplane to solve this question.
+From student-node `ssh cluster1-controlplane` to solve this question.
 
 
-Create a Horizontal Pod Autoscaler with name backend-hpa for the deployment named backend-deployment in the backend namespace with the webapp-hpa.yaml file located under the root folder.
+Create a Horizontal Pod Autoscaler with name `backend-hpa` for the deployment named `backend-deployment`in the backend namespace with the `webapp-hpa.yaml` file located under the root folder.
 Ensure that the HPA scales the deployment based on memory utilization, maintaining an average memory usage of 65% across all pods.
 Configure the HPA with a minimum of 3 replicas and a maximum of 15.
 
 # Solution
 Under /root/ folder you will find a yaml file webapp-hpa.yaml. Update the yaml file as per task given.
-
+```
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -28,7 +28,8 @@ spec:
       target:
         type: Utilization
         averageUtilization: 65
-
+```
 Use below command
-
+```
 kubectl create -f webapp-hpa.yaml
+```
