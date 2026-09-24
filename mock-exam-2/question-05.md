@@ -47,3 +47,17 @@ To verify the permission from kubectl utility tool:
 ```
 kubectl auth can-i update pods --as=john --namespace=development
 ```
+
+# My solution
+***Ref:*** https://kubernetes.io/docs/tasks/tls/certificate-issue-client-csr/
+
+```
+kubectl apply -f john-developer.yaml
+```
+```
+kubectl get csr -o wide
+```
+```
+kubectl certificate approve john-developer
+```
+
