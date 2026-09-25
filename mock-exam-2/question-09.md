@@ -3,6 +3,9 @@ From student-node `ssh cluster2-controlplane` to solve this question.
 
 As a Kubernetes administrator, you are unable to run any of the kubectl commands on the cluster. Troubleshoot the problem and get the cluster to a functioning state.
 
+- [ ] Kubelet service is running
+- [ ] kubectl is functional
+
 # Solution
 Check if the node's kubelet service is running. Without it, the control plane cannot register nodes or accept kubectl requests.
 
