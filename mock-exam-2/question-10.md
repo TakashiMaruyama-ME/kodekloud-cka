@@ -1,18 +1,18 @@
 # Question
 
 
-From student-node ssh cluster1-controlplane to solve this question.
+From student-node `ssh cluster1-controlplane` to solve this question.
 
 
-Modify the existing web-gateway on cka5673 namespace to handle HTTPS traffic on port 443 for kodekloud.com, using a TLS certificate stored in a secret named kodekloud-tls.
+Modify the existing `web-gateway` on `cka5673` namespace to handle *HTTPS* traffic on port `443` for `kodekloud.com`, using a *TLS certificate* stored in a secret named `kodekloud-tls`.
 
 # Solution
 SSH into the cluster1-controlplane host
-
+```
 ssh cluster1-controlplane
-
+```
 Check the configuration of the web-gateway.
-
+```
 cluster1-controlplane ~ ➜  kubectl get gateway web-gateway -n cka5673 -o yaml
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
@@ -28,9 +28,9 @@ spec:
     name: https
     port: 80
     protocol: HTTP
-
+```
 The current configuration of the web-gateway is incorrect as it is listening on port 80 using the HTTP protocol. To update the web-gateway to listen on port 443 with the TLS certificate, use the following manifest:
-
+```
 # web-gateway.yaml
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
@@ -47,7 +47,8 @@ spec:
       tls:
         certificateRefs:
           - name: kodekloud-tls
-
+```
 Apply the configuration as follows:
-
+```
 kubectl apply -f web-gateway.yaml
+```
