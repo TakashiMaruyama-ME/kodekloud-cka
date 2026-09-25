@@ -20,7 +20,8 @@ kubectl expose pod nginx-resolver --name=nginx-resolver-service --port=80 --targ
 To create a pod test-nslookup. Test that you are able to look up the service and pod names from within the cluster:
 ```
 kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup nginx-resolver-service
-kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup nginx-resolver-service > /root/CKA/nginx.svc```
+kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup nginx-resolver-service > /root/CKA/nginx.svc
+```
 
 Get the IP of the nginx-resolver pod and replace the dots(.) with hyphon(-) which will be used below.
 ```
