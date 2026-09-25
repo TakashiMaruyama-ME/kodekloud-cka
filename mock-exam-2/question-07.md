@@ -6,6 +6,9 @@ Create a static pod on cluster1-node01 called nginx-critical with the image ngin
 
 For example, use /etc/kubernetes/manifests as the static Pod path.
 
+- [ ] Is the static pod configured under /etc/kubernetes/manifests?
+- [ ] Is pod nginx-critical-cluster1-node01 up and running?
+
 # Solution
 To create a static pod called nginx-critical by using below command:
 ```
