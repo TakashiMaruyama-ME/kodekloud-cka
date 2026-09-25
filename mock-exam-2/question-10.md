@@ -6,6 +6,9 @@ From student-node `ssh cluster1-controlplane` to solve this question.
 
 Modify the existing `web-gateway` on `cka5673` namespace to handle *HTTPS* traffic on port `443` for `kodekloud.com`, using a *TLS certificate* stored in a secret named `kodekloud-tls`.
 
+- [ ] Is the web gateway configured to listen on the hostname kodekloud.com?
+- [ ] Is the HTTPS listener configured with the correct TLS certificate?
+
 # Solution
 SSH into the cluster1-controlplane host
 ```
