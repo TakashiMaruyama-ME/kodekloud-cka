@@ -6,6 +6,8 @@ From student-node `ssh cluster1-controlplane `to solve this question.
 
 On the cluster, the team has installed multiple helm charts on a different namespace. By mistake, those deployed resources include one of the vulnerable images called `kodekloud/webapp-color:v1`. Find out the release name and uninstall it.
 
+- [ ] Is helm release uninstalled?
+
 # Solution
 In this task, we will use the helm commands and jq tool. Here are the steps: -
 
