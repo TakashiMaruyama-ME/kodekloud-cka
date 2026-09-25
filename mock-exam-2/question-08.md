@@ -6,6 +6,9 @@ Create a Horizontal Pod Autoscaler with name `backend-hpa` for the deployment na
 Ensure that the HPA scales the deployment based on memory utilization, maintaining an average memory usage of 65% across all pods.
 Configure the HPA with a minimum of 3 replicas and a maximum of 15.
 
+- [ ] Is backend-hpa HPA deployed in backend namespace?
+- [ ] Is deployment configured for metrics memory utilization?
+
 # Solution
 Under /root/ folder you will find a yaml file webapp-hpa.yaml. Update the yaml file as per task given.
 ```
