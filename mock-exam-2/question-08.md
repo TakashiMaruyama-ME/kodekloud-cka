@@ -35,6 +35,7 @@ kubectl create -f webapp-hpa.yaml
 ```
 
 # My Solution
+This one can be solved with a imepative command:
 ```
 kubectl autoscale deployment backend-deployment -n backend --name=backend-hpa --memory=65% --min=3 --max=15 --dry-run=client -o yaml > webapp-hpa.yaml
 ```
