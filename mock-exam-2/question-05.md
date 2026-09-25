@@ -50,7 +50,18 @@ kubectl auth can-i update pods --as=john --namespace=development
 
 # My solution
 ***Ref:*** https://kubernetes.io/docs/tasks/tls/certificate-issue-client-csr/
-
+***Note:***
+1. A nicer way to decode the csr:
+```
+$(base64 -w0 < /root/CKA/john.csr>)
+```
+2. What confused me was `CSR name` vs. `user name`
+  * the `subject=CN` in the john.csr is the user name
+  * `john-developer` is the name of the CSR object created in kubernetes
+```
+openssl req -in /root/CKA/john.csr -noout -subject
+subject=CN = john
+```
 ```
 kubectl apply -f john-developer.yaml
 ```
