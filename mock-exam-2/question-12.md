@@ -1,26 +1,31 @@
 # Question
+From student-node `ssh cluster1-controlplane` to solve this question.
 
+You are requested to create a NetworkPolicy to allow traffic from frontend apps located in the `frontend` namespace, to `backend` apps located in the backend namespace, but not from the databases in the `databases` namespace. There are three policies available in the `/root` folder. Apply the most restrictive policy from the provided YAML files to achieve the desired result. Do not delete any existing policies.
 
-From student-node ssh cluster1-controlplane to solve this question.
-
-You are requested to create a NetworkPolicy to allow traffic from frontend apps located in the frontend namespace, to backend apps located in the backend namespace, but not from the databases in the databases namespace. There are three policies available in the /root folder. Apply the most restrictive policy from the provided YAML files to achieve the desired result. Do not delete any existing policies.
+- [ ] Correct NetworkPolicy applied
+- [ ] Incorrect NetworkPolicy is not applied
+- [ ] Second incorrect NetworkPolicy is not applied
 
 # Solution
-Read through all provided NetworkPolicy YAML files carefully. Only one of them restricts traffic from the databases namespace while allowing it from frontend.
+Read through all provided NetworkPolicy YAML files carefully. Only one of them restricts traffic from the `databases` namespace while allowing it from frontend.
 
 On cluster1-controlplane, Review the contents of the three YAML files:
+```
 cat /root/net-pol-1.yaml
 cat /root/net-pol-2.yaml
 cat /root/net-pol-3.yaml
-
+```
 Understand the differences:
 net-pol-1.yaml: Too broad; allows traffic from any namespace with a certain label.
 net-pol-2.yaml: Incorrect; explicitly allows both frontend and databases.
 net-pol-3.yaml: Correct; only allows traffic from the frontend namespace.
 Apply the correct policy (net-pol-3.yaml):
+```
 kubectl apply -f /root/net-pol-3.yaml
-
+```
 Verify it’s the only one applied:
+```
 kubectl get netpol -n backend
-
+```
 You should only see net-policy-3 listed
