@@ -6,6 +6,10 @@ Your cluster has a *failed deployment* named `backend-api` with multiple *pods*.
 
 *NOTE: A ResourceQuota named `cpu-mem-quota` is applied to the default namespace and should not be edited or modified.*
 
+- [ ] Are all pods currently running?
+- [ ] Are the limits unchanged?
+- [ ] Is the ResourceQuota unchanged?
+
 # Solution
 SSH into the cluster3-controlplane host
 ```ssh cluster3-controlplane```
