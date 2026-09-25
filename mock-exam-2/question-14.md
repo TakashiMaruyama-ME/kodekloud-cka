@@ -1,26 +1,28 @@
 # Question
-
-
-From student-node ssh cluster4-controlplane to solve this question.
+From student-node `ssh cluster4-controlplane` to solve this question.
 
 
 Utilize the official Calico definition file, available at:
-
+```
 https://raw.githubusercontent.com/projectcalico/calico/v3.29.3/manifests/tigera-operator.yaml
-
+```
 to deploy the Calico CNI on the cluster.
 
-Make sure to configure the CIDR to 172.17.0.0/16
+Make sure to configure the CIDR to `172.17.0.0/16`
 
 After the CNI installation, verify that pods can successfully communicate.
 
 Custom Definitions for calico can be retrieved via:
-
+```
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.29.2/manifests/custom-resources.yaml -O
+```
+
+- [ ] Is Calico cni installed?
+- [ ] Can pods communicate with one another?
 
 # Solution
 SSH into the cluster4-controlplane host
-ssh cluster4-controlplane
+```ssh cluster4-controlplane```
 
 1. Install the Calico CNI
 Install the operator on your cluster:
