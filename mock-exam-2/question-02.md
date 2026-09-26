@@ -17,7 +17,7 @@ done
 touch /var/log/app/app.log
 tail -f /var/log/app/app.log
 ```
-3) Both containers must share the same `emptyDir``volume mounted at `/var/log/app`.
+3) Both containers must share the same `emptyDir` volume mounted at `/var/log/app`.
 
 4) Use any consistent label for the Deployment selector and the Pod template labels (the exact key/value is up to you, as long as they match).
 
@@ -78,66 +78,54 @@ kubectl logs -n logging-ns deployment/logging-deployment -c log-agent --tail=50
 You should see repeated Log entry lines in the output.
 
 # My Solution
+Start with a basic `deployment` created from imperative command:
 ```
-k create deploy logging-deployment -n logging-ns --image=busybox -o yaml > logging.yaml
+kubectl create deploy logging-deployment -n logging-ns --image=busybox --dry-run=client -o yaml > logging.yaml
 ```
+Then edit the file to include, the 2nd pod, and shared volume.
 ```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: "2026-09-23T19:35:19Z"
-  generation: 1
   labels:
     app: logging-deployment
   name: logging-deployment
   namespace: logging-ns
-  resourceVersion: "6684"
-  uid: 3faea220-f188-442d-9f03-4243b4ac03b4
 spec:
-  progressDeadlineSeconds: 600
   replicas: 1
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: logging-deployment
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
       labels:
         app: logging-deployment
     spec:
-      containers:
-      - name: app-container
-        image: busybox
-        command: ["sh","-c"]
-        args: 
-          - |
-            while true; do
-              echo "Log entry" >> /var/log/app/app.log
-              sleep 5
-            done
-        volumeMounts:
-          - name: shared-volume
-            mountPath: /var/log/app
-      - name: log-agent
-        image: busybox
-        command: ["sh","-c"]
-        args: 
-          - |
-            touch /var/log/app/app.log
-            tail -f /var/log/app/app.log
-        volumeMounts:
-          - name: shared-volume
-            mountPath: /var/log/app
       volumes:
         - name: shared-volume
           emptyDir: {}
-
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
+      containers:
+        - name: app-container
+          image: busybox
+          command: ["sh","-c"]
+          args:
+            - |
+              mkdir -p /var/log/app
+              while true; do
+                echo "Log entry" >> /var/log/app/app.log
+                sleep 5
+              done
+          volumeMounts:
+            - name: shared-volume
+              mountPath: /var/log/app
+        - name: log-agent
+          image: busybox
+          command: ["sh","-c"]
+          args:
+            - |
+              touch /var/log/app/app.log
+              tail -f /var/log/app/app.log
+          volumeMounts:
+            - name: shared-volume
+              mountPath: /var/log/app
 ```
