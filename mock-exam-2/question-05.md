@@ -87,6 +87,10 @@ kubectl create role developer --resource=pods --verb=create,list,get,update,dele
 kubectl create rolebinding developer-role-binding --role=developer --user=john --namespace=development
 ```
 
+Verify that all resources are created
+```
+kubectl get csr,roles,rolebindings -o wide -n development
+```
 To verify the permission from kubectl utility tool:
 ```
 kubectl auth can-i update pods --as=john --namespace=development
