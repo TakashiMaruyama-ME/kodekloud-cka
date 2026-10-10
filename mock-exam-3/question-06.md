@@ -7,4 +7,4 @@ Create a new NetworkPolicy named ingress-to-nptest in the default namespace that
 - [ ] Important: Don't Alter Existing Objects! (default-deny NetworkPolicy must still exist)
 - [ ] NetworkPolicy: Is the port correct?
 - [ ] NetworkPolicy: Is it applied to the correct Pod?
-- [ ] Is ingress traffic to np-test-1 pod reachable on port 80?
+- [ ] Is ingress traffic to np-test-1 pod reachable on port 80? 
