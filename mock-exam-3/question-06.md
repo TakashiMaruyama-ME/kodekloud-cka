@@ -1,3 +1,4 @@
+# Question
 A pod called np-test-1 and a service called np-test-service have been deployed in the default namespace. A default-deny NetworkPolicy is currently blocking all ingress traffic to pods in this namespace, which is why the service is unreachable.
 
 Create a new NetworkPolicy named ingress-to-nptest in the default namespace that allows ingress traffic from all sources to the np-test-1 pod on port 80.
