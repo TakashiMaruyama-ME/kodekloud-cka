@@ -8,3 +8,37 @@ Next, create a pod called pvviewer with the image: redis and serviceAccount: pvv
 - [ ] ClusterRoleBinding: pvviewer-role-binding
 - [ ] Pod: pvviewer
 - [ ] Is the pod configured to use ServiceAccount pvviewer?
+
+# Solution
+Pods authenticate to the API Server using ServiceAccounts. If the serviceAccount name is not specified, the default service account for the namespace is used during a pod creation.
+
+Reference: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+
+Now, create a service account pvviewer:
+```
+kubectl create serviceaccount pvviewer
+```
+To create a clusterrole:
+```
+kubectl create clusterrole pvviewer-role --resource=persistentvolumes --verb=list
+```
+To create a clusterrolebinding:
+```
+kubectl create clusterrolebinding pvviewer-role-binding --clusterrole=pvviewer-role --serviceaccount=default:pvviewer
+```
+Solution manifest file to create a new pod called pvviewer as follows:
+```
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pvviewer
+  name: pvviewer
+spec:
+  containers:
+  - image: redis
+    name: pvviewer
+  # Add service account name
+  serviceAccountName: pvviewer
+  ```
