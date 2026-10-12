@@ -5,3 +5,41 @@ Inspect both the PVC and PV and identify why the PVC is not being bound and fix 
 
 
 - [ ] Is PVC correctly bound to PV?
+
+# Solution
+Use kubectl describe and check the PVC and PV details to identify the issue.
+
+  1. Inspect both resources:
+```
+kubectl describe pv app-pv
+kubectl describe pvc app-pvc -n storage-ns
+```
+  2. Note that there is accessModes mismatch between PV and PVC objects. Flush the PVC in a yaml file to be able to update it:
+```
+kubectl get pvc app-pvc -n storage-ns -o yaml > pvc.yaml
+```
+
+  3. Update the access mode on pvc.yaml:
+```
+# vi pvc.yaml
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: app-pvc
+  namespace: storage-ns
+spec:
+  accessModes:
+    - ReadWriteOnce        # fix access mode to match PV object
+  resources:
+    ...
+```
+  4. Delete and re-create the pvc object
+```
+kubectl delete pvc -n storage-ns app-pvc
+kubectl apply -f pvc.yaml
+```
+  5. Verify the status of the PVC is showing as Bound:
+```
+kubectl get pvc app-pvc -n storage-ns
+```
