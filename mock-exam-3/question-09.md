@@ -3,3 +3,13 @@ A kubeconfig file called super.kubeconfig has been created under /root/CKA. Ther
 
 
  - [ ] Fix /root/CKA/super.kubeconfig
+
+# Solution
+Verify host and port for kube-apiserver are correct.
+
+Open the super.kubeconfig in vi editor.
+
+Change the 9999 port to 6443 and run the below command to verify:
+```
+kubectl cluster-info --kubeconfig=/root/CKA/super.kubeconfig
+```
